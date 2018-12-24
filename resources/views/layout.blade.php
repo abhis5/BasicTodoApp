@@ -10,15 +10,18 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" >
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                
+              
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+            
+              
             }
 
             .full-height {
@@ -70,6 +73,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            #footer{
+                 color: red;
+                 position: absolute;
+                 bottom:0;
+                 right:0;
+
+            }
         </style>
     </head>
     <body>
@@ -84,8 +95,15 @@
                <div class="content">
                 
                 @yield('content')
+
               
                 </div>
         </div>
+
+        
+        <footer id="footer">
+                  
+                  <p>Made with &hearts; by Abhshek!</p>
+                  </footer>
     </body>
 </html>

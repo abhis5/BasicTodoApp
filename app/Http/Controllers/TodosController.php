@@ -10,6 +10,7 @@ class TodosController extends Controller
     public function index(){
 
     $todos = Todo::all();
+    $todos = Todo::orderBy('updated_at', 'desc')->get();
 
     return view('todos') -> with('todos' , $todos);
 
@@ -18,15 +19,10 @@ class TodosController extends Controller
 
 
     public function store(Request $request){
-
-     
-
-      $todo = new Todo;
-
+     $todo = new Todo;
       $todo -> todo = $request->todo;
       $todo -> save();
-
-        return redirect() -> back();
+  return redirect() -> back();
     }
 
 
@@ -42,26 +38,34 @@ class TodosController extends Controller
     }
 
    public function update($id){
-    
+
     $todo = Todo::find($id);
-     
-    
+
+
     return view('update') -> with('todo', $todo);
 
    }
 
    public function save (Request $request, $id){
-        
+
       $todo = Todo::find($id);
-      
+
       $todo-> todo = $request -> todo;
 
       $todo-> save();
 
       return redirect() -> route('todos') ;
 
+}
 
-   }
+public function completed($id){
+
+  $todo= Todo::find($id);
+
+   $todo -> completed = 1 ;
+   $todo -> save();
+  return redirect() -> back();
+}
 
 
 }

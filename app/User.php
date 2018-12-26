@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+// Add One to many relationship
+
+public function Todos(){
+
+  return $this-> hasMany('\App\Todo');
+}
+
+
 }

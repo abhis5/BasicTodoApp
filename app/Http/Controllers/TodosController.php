@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
 use App\Todo;
+use App\User;
+use App\Auth;
 
 class TodosController extends Controller
 {
     public function index(){
 
-    $todos = Todo::all();
+
     $todos = Todo::orderBy('updated_at', 'desc')->get();
 
     return view('todos') -> with('todos' , $todos);
@@ -19,8 +23,12 @@ class TodosController extends Controller
 
 
     public function store(Request $request){
-     $todo = new Todo;
-      $todo -> todo = $request->todo;
+     $todo = new Todo();
+    #  $todo -> user_id = Session::put('user_id', Auth::user()->id);
+      $todo -> todo = $request-> input('todo');
+      $todo -> user_id = auth() -> user() -> id;
+
+
       $todo -> save();
   return redirect() -> back();
     }
@@ -54,7 +62,7 @@ class TodosController extends Controller
 
       $todo-> save();
 
-      return redirect() -> route('todos') ;
+      return redirect() -> route('home') ;
 
 }
 
@@ -66,6 +74,10 @@ public function completed($id){
    $todo -> save();
   return redirect() -> back();
 }
+
+
+
+
 
 
 }
